@@ -7,22 +7,22 @@
 var getElementsByClassName = function (className) {
   // your code here
   var result=[],
-  	  getElementByClass = function (nodes){
-  	  	if (nodes!==undefined){
-  	  		var classList=nodes.classList;
-	  	  	if (nodes.length){
-	  	  		for (var i=0, len=nodes.length; i<len;i++){
-	  	  			if (nodes[i].classList!==undefined){
-	  	  				getElementByClass(nodes[i]);
+  	  getElementByClass = function (elements){
+  	  	if (elements!==undefined){
+  	  		var classList=elements.classList;
+	  	  	if (elements.length){
+	  	  		for (var i=0, size=elements.length; i<size; i++){
+	  	  			if (elements[i].classList!==undefined){
+	  	  				getElementByClass(elements[i]);
 	  	  			}
 	  	  		}
 	  	  	}
 	  	  	else {
 	  	  		if (classList){
 		  	  		if (classList.contains(className)) {
-			  	  		result.push(nodes);
+			  	  		result.push(elements);
 			  	  	}
-		  	  		getElementByClass(nodes.childNodes); 		  	  			
+		  	  		getElementByClass(elements.childNodes); 		  	  			
 	  	  		}
 	  	  	}
 	  	}
