@@ -5,19 +5,55 @@
 var stringifyJSON = function(obj) {
   // your code goes here
   var type = typeof(obj);
-  
-  if(type === 'number'|| obj === null || type === 'boolean'){
-  console.log('valor: '+ obj + ' typo: ' + type + ' Valor final: '+ String(""+obj+""));
-  	var result = String(''+obj+''); 
+  console.log('tipo: '+type );
+  var result = '';
 
-  	return result;
-  }else if(type === "string"){
-  	var result = String('"'+obj+'"');
-  	return result; 
+  if(obj === null){
+    console.log('null');
+     result = ''+obj+'';
   }
-  else if(type === 'object'){
-  	var result = String(''+obj+''); 
-  	console.log('valor: '+ obj + ' typo: ' + type + ' Valor final: '+ String(""+obj+""));
-  	return result;
+  else if(type === 'boolean'){
+    console.log('boolean');
+     result = ''+obj+'';
   }
+  else if(type === 'string'){
+    result = '"'+obj+'"';
+  }
+
+  else if(type ==='number'){
+    console.log('Number');
+    result = ''+obj+'';
+  }
+  else if(Array.isArray(obj)){
+      console.log('length: '+obj.length);
+    if(obj.length<1){
+      result = '[]';
+    }else{
+       var items = [];
+      for(var num in obj){
+        items.push(stringifyJSON(obj[num]));
+      }
+       result = '['+ items + ']';
+    }
+
+  }else{
+    var items = [];
+
+      for (var subKey in obj){
+          
+          
+            items += '"' + subKey + '":';
+            stringifyJSON(obj[subKey]);
+            items += ',';
+          
+        }
+
+
+    
+       result = '{'+ items + '}';
+  }
+
+
+  return result;
+
 };
